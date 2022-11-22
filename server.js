@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const FileRoute = require("./routes/file");
 
 // MongoDB Connection Setup
-mongoose.connect("mongodb://localhost:27017/testdb");
+mongoose.connect("mongodb://0.0.0.0:27017/testdb");
 const db = mongoose.connection;
 
 db.on("error", (err) => {
