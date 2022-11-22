@@ -60,7 +60,7 @@ const update = (req, res, next) => {
 
 const destroy = (req, res, next) => {
   let fileID = req.body.fileID;
-  File.deleteById({ _id: fileID })
+  File.findByIdAndDelete(fileID)
     .then(() => {
       res.json({
         message: "File Removed form DB : " + fileID,
