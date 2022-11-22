@@ -33,7 +33,48 @@ const store = (req, res, next) => {
     });
 };
 
+// Update a file
+
+const update = (req, res, next) => {
+  let fileID = req.body.fileID;
+  let updatedData = {
+    thumbnailURL: req.body.thumbnailURL,
+    fileURL: req.body.fileURL,
+    author: req.body.author,
+    title: req.body.title,
+    duration: req.body.duration,
+  };
+
+  File.findByIdAndUpdate(fileID, { $set: updatedData })
+    .then(() => {
+      res.json({
+        message: " Information updated!",
+      });
+    })
+    .catch((error) => {
+      res.json({
+        message: "An error occured!",
+      });
+    });
+};
+
+const destroy = (req, res, next) => {
+  let fileID = req.body.fileID;
+  File.deleteById({ _id: fileID })
+    .then(() => {
+      res.json({
+        message: "File Removed form DB : " + fileID,
+      });
+    })
+    .catch((error) => {
+      res.json({
+        message: "An error occured!",
+      });
+    });
+};
 module.exports = {
   index,
   store,
+  update,
+  destroy,
 };

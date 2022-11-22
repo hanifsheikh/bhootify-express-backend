@@ -33,9 +33,10 @@ app.listen(PORT, () => {
   console.log("Server is running on port " + PORT);
 });
 
-app.use("/api/file", FileRoute);
-app.use("/", (req, res, next) => {
+app.get("/", (req, res, next) => {
   res.json({
     message: "Bhootify API Server",
   });
 });
+
+app.use("/api/file", FileRoute);
