@@ -3,13 +3,9 @@ const File = require("../models/File");
 // List/Index Files
 const index = (req, res, next) => {
   File.find()
-    .then((response) => {
-      res.json({ response });
-    })
-    .catch((error) => {
-      res.json({
-        message: "An error occured!",
-      });
+    .sort("-createdAt")
+    .exec((err, files) => {
+      res.json(files);
     });
 };
 
